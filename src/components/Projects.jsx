@@ -3,14 +3,26 @@ import Reveal from './Reveal'
 
 const ALL = [
   { id:1, cat:'living',  src:'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=85', cat_label:'Living Room', name:'Modern Luxe Living' },
-  { id:2, cat:'bedroom', src:'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=900&q=85',  cat_label:'Bedroom',     name:'Serene Retreat' },
-  { id:3, cat:'kitchen', src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=900&q=85',  cat_label:'Kitchen',     name:"Chef's Paradise" },
+  { id:2, cat:'bedroom', src:'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=85',  cat_label:'Bedroom',     name:'Serene Retreat' },
+  { id:3, cat:'kitchen', src:'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=85',  cat_label:'Kitchen',     name:"Chef's Paradise" },
   { id:4, cat:'living',  src:'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85',  cat_label:'Living Room', name:'Contemporary Lounge' },
-  { id:5, cat:'office',  src:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=85', cat_label:'Office',      name:'Executive Workspace' },
+  { id:5, cat:'office',  src:'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=85',  cat_label:'Office',      name:'Executive Workspace' },
   { id:6, cat:'bedroom', src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1400&q=85', cat_label:'Bedroom',    name:'Master Suite Elegance' },
 ]
 
 const FILTERS = [['all','All'],['living','Living Room'],['kitchen','Kitchen'],['bedroom','Bedroom'],['office','Office']]
+
+// Assigns span + aspect-ratio utility classes based on visible count and card index.
+// Keeps the editorial feel for full grid while staying clean on filtered views.
+const FULL_SHAPES = ['pc-7', 'pc-5', 'pc-5', 'pc-7', 'pc-6', 'pc-6']
+
+function cardShape(total, i) {
+  if (total === 1)            return 'pc-12'
+  if (total === 2)            return 'pc-6'
+  if (total === 3)            return 'pc-4'
+  if (total === 5 && i === 4) return 'pc-12'
+  return FULL_SHAPES[i] ?? 'pc-6'
+}
 
 export default function Projects() {
   const [filter, setFilter] = useState('all')
@@ -34,9 +46,10 @@ export default function Projects() {
       <div className="container">
 
         <Reveal className="proj-top">
-          <div>
+          <div className="proj-head">
             <span className="eyebrow">Portfolio</span>
             <h2 className="section-title">Selected Works</h2>
+            <span className="proj-count">{visible.length} {visible.length === 1 ? 'Project' : 'Projects'}</span>
           </div>
           <div className="filter-row">
             {FILTERS.map(([v, l]) => (
@@ -48,10 +61,10 @@ export default function Projects() {
         </Reveal>
 
         <div className="proj-grid">
-          {visible.map(p => (
+          {visible.map((p, i) => (
             <div
               key={`${p.id}-${filter}`}
-              className="proj-card"
+              className={`proj-card ${cardShape(visible.length, i)}`}
               onClick={() => setLbSrc(p.src)}
             >
               <img src={p.src} alt={p.name} loading="lazy" />
