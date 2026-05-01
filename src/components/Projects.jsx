@@ -14,7 +14,7 @@ const FILTERS = [['all','All'],['living','Living Room'],['kitchen','Kitchen'],['
 
 // Assigns span + aspect-ratio utility classes based on visible count and card index.
 // Keeps the editorial feel for full grid while staying clean on filtered views.
-const FULL_SHAPES = ['pc-7', 'pc-5', 'pc-5', 'pc-7', 'pc-6', 'pc-6']
+const FULL_SHAPES = ['pc-7 pr-2', 'pc-5', 'pc-5', 'pc-4', 'pc-4', 'pc-4']
 
 function cardShape(total, i) {
   if (total === 1)            return 'pc-12'
@@ -65,6 +65,7 @@ export default function Projects() {
             <div
               key={`${p.id}-${filter}`}
               className={`proj-card ${cardShape(visible.length, i)}`}
+              style={{ animationDelay: `${i * 0.08}s` }}
               onClick={() => setLbSrc(p.src)}
             >
               <img src={p.src} alt={p.name} loading="lazy" />

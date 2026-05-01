@@ -78,22 +78,22 @@ export default function Contact() {
                 <p className="form-sub">All fields required.</p>
                 <form onSubmit={submit}>
                   <div className="form-row">
-                    <div className="fg">
+                    <div className="fg fg-float">
+                      <input type="text"  name="name"    value={form.name}    onChange={update} placeholder=" " required />
                       <label>Name</label>
-                      <input type="text"  name="name"    value={form.name}    onChange={update} placeholder="Your full name"   required />
                     </div>
-                    <div className="fg">
+                    <div className="fg fg-float">
+                      <input type="tel"   name="phone"   value={form.phone}   onChange={update} placeholder=" " required />
                       <label>Phone</label>
-                      <input type="tel"   name="phone"   value={form.phone}   onChange={update} placeholder="+91 98765 43210"  required />
                     </div>
                   </div>
-                  <div className="fg">
+                  <div className="fg fg-float">
+                    <input type="email" name="email"   value={form.email}   onChange={update} placeholder=" " required />
                     <label>Email</label>
-                    <input type="email" name="email"   value={form.email}   onChange={update} placeholder="your@email.com"    required />
                   </div>
-                  <div className="fg">
+                  <div className="fg fg-float">
+                    <textarea name="message" value={form.message} onChange={update} placeholder=" " required />
                     <label>Project Brief</label>
-                    <textarea name="message" value={form.message} onChange={update} placeholder="Describe your space, scope, and what you're hoping to achieve..." required />
                   </div>
                   <button type="submit" className="btn btn-clay btn-full" disabled={loading}>
                     {loading

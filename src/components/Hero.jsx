@@ -73,6 +73,15 @@ export default function Hero() {
               View Work
             </button>
           </div>
+
+          <div className="hero-strip">
+            {[['150+', 'Projects'], ['12+', 'Years'], ['120+', 'Clients']].map(([num, lbl]) => (
+              <div className="hero-strip-item" key={lbl}>
+                <span className="hero-strip-num">{num}</span>
+                <span className="hero-strip-lbl">{lbl}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
