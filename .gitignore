@@ -13,5 +13,5 @@ node_modules/@rollup/rollup-win32-x64-msvc/rollup.win32-x64-msvc.node
 dist/index.html
 dist/assets/index-BI_RY5jL.js
 dist/assets/index-X_yStsQ1.css
-node_modules
-.claude
+node_modules/
+.claude/
