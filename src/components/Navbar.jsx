@@ -15,11 +15,15 @@ function scrollTo(id) {
 }
 
 export default function Navbar() {
-  const [solid, setSolid] = useState(false)
-  const [open,  setOpen]  = useState(false)
+  const [solid,   setSolid]   = useState(false)
+  const [visible, setVisible] = useState(false)
+  const [open,    setOpen]    = useState(false)
 
   useEffect(() => {
-    const fn = () => setSolid(window.scrollY > 60)
+    const fn = () => {
+      setSolid(window.scrollY > 60)
+      setVisible(window.scrollY > 120)
+    }
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
@@ -34,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`nav${solid ? ' solid' : ''}`}>
+      <nav className={`nav${solid ? ' solid' : ''}${visible ? ' visible' : ''}`}>
         <div className="nav-inner">
           <a href="#home" className="logo-wrap" onClick={e => { e.preventDefault(); nav('home') }}>
             <img src={logo} alt="Decor & Modules" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />

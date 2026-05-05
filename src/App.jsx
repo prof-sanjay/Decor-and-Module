@@ -1,5 +1,5 @@
 import Navbar         from './components/Navbar'
-import Hero           from './components/Hero'
+import ScrubHero      from './components/ScrubHero'
 import Stats          from './components/Stats'
 import Projects       from './components/Projects'
 import Services       from './components/Services'
@@ -17,7 +17,7 @@ export default function App() {
       <SectionNav />
       <Navbar />
       <main>
-        <Hero />
+        <ScrubHero />
         <Stats />
         <Projects />
         <Services />
